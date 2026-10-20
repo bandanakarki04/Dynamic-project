@@ -7,10 +7,21 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Problem extends Model
 {
-    protected $fillable = ['name', 'description', 'area'];
+    protected $table = 'sf_problems';
+
+    protected $fillable = [
+        'name',
+        'description',
+        'area',
+    ];
 
     public function solutions(): BelongsToMany
     {
-        return $this->belongsToMany(Solution::class);
+        return $this->belongsToMany(
+            Solution::class,
+            'sf_problem_solution',
+            'problem_id',
+            'solution_id'
+        );
     }
 }
