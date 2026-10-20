@@ -7,13 +7,11 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Problem extends Model
 {
-    protected $table = 'sf_problems';
-
-    protected $fillable = [
-        'name',
-        'description',
-        'area',
-    ];
+  
+protected $fillable = [
+    'name',
+    'description',
+];
 
     public function solutions(): BelongsToMany
     {
