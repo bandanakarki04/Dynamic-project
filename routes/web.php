@@ -1,9 +1,12 @@
+
 <?php
 
+use App\Http\Controllers\ProblemController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
 });
-use App\Http\Controllers\ProblemController;
-Route::resource('problems', ProblemController::class)->only(['index', 'create', 'store']);
+
+Route::resource('problems', ProblemController::class)
+    ->only(['index', 'create', 'store']);

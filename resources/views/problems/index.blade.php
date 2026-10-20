@@ -1,3 +1,4 @@
+
 @extends('layouts.app')
 
 @section('title', 'Problems')
@@ -15,7 +16,6 @@
         <thead>
             <tr>
                 <th>Name</th>
-                <th>Area</th>
                 <th>Description</th>
             </tr>
         </thead>
@@ -23,12 +23,11 @@
             @forelse ($problems as $problem)
                 <tr>
                     <td>{{ $problem->name }}</td>
-                    <td>{{ $problem->area }}</td>
                     <td>{{ $problem->description }}</td>
                 </tr>
             @empty
                 <tr>
-                    <td colspan="3">No problems yet.</td>
+                    <td colspan="2">No problems yet.</td>
                 </tr>
             @endforelse
         </tbody>

@@ -10,20 +10,28 @@
 
         <p>
             <label for="name">Name</label><br>
-            <input type="text" id="name" name="name" value="{{ old('name') }}">
-            @error('name') <br><span>{{ $message }}</span> @enderror
-        </p>
-
-        <p>
-            <label for="area">Area</label><br>
-            <input type="text" id="area" name="area" value="{{ old('area') }}">
-            @error('area') <br><span>{{ $message }}</span> @enderror
+            <input
+                type="text"
+                id="name"
+                name="name"
+                value="{{ old('name') }}"
+                required
+            >
+            @error('name')
+                <br><span>{{ $message }}</span>
+            @enderror
         </p>
 
         <p>
             <label for="description">Description</label><br>
-            <textarea id="description" name="description" rows="4">{{ old('description') }}</textarea>
-            @error('description') <br><span>{{ $message }}</span> @enderror
+            <textarea
+                id="description"
+                name="description"
+                rows="4"
+            >{{ old('description') }}</textarea>
+            @error('description')
+                <br><span>{{ $message }}</span>
+            @enderror
         </p>
 
         <button type="submit">Save</button>
