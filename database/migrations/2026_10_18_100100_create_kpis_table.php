@@ -8,7 +8,7 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('sf_kpis', function (Blueprint $table) {
+        Schema::create('kpis', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique();      // e.g. sales growth
             $table->text('description')->nullable(); // how it is measured
@@ -18,6 +18,6 @@ return new class extends Migration
 
     public function down(): void
     {
-        Schema::dropIfExists('sf_kpis');
+        Schema::dropIfExists('kpis');
     }
 };

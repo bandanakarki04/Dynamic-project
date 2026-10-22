@@ -9,7 +9,7 @@ return new class extends Migration
     public function up(): void
     {
         // No "sf_" here: Laravel adds the prefix automatically.
-        Schema::create('sf_tags', function (Blueprint $table) {
+        Schema::create('tags', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique(); // e.g. B2B, free, scalable
             $table->timestamps();
@@ -18,6 +18,6 @@ return new class extends Migration
 
     public function down(): void
     {
-        Schema::dropIfExists('sf_tags');
+        Schema::dropIfExists('tags');
     }
 };
