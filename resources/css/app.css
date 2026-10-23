@@ -8,5 +8,30 @@
 @theme {
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, ...;
 }
+body {
+    margin: 20px;
+}
 
+header {
+    margin-bottom: 20px;
+}
+
+nav {
+    margin-top: 10px;
+}
+
+nav a {
+    margin-right: 15px;
+    text-decoration: none;
+}
+
+main {
+    margin-top: 20px;
+}
+
+footer {
+    margin-top: 30px;
+    padding-top: 10px;
+    border-top: 1px solid #ccc;
+}
 
