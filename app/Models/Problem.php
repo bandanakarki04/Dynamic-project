@@ -17,7 +17,7 @@ protected $fillable = [
     {
         return $this->belongsToMany(
             Solution::class,
-            'sf_problem_solution',
+            'problem_solution',
             'problem_id',
             'solution_id'
         );
