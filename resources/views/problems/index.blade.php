@@ -1,4 +1,3 @@
-
 @extends('layouts.app')
 
 @section('title', 'Problems')
@@ -17,6 +16,7 @@
             <tr>
                 <th>Name</th>
                 <th>Description</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -24,10 +24,29 @@
                 <tr>
                     <td>{{ $problem->name }}</td>
                     <td>{{ $problem->description }}</td>
+                    <td>
+                        <a href="{{ route('problems.edit', $problem) }}">Edit</a>
+
+                        <form
+                            method="POST"
+                            action="{{ route('problems.destroy', $problem) }}"
+                            style="display: inline;"
+                        >
+                            @csrf
+                            @method('DELETE')
+
+                            <button
+                                type="submit"
+                                onclick="return confirm('Are you sure you want to delete this problem?')"
+                            >
+                                Delete
+                            </button>
+                        </form>
+                    </td>
                 </tr>
             @empty
                 <tr>
-                    <td colspan="2">No problems yet.</td>
+                    <td colspan="3">No problems yet.</td>
                 </tr>
             @endforelse
         </tbody>
