@@ -1,4 +1,3 @@
-
 <?php
 
 use App\Http\Controllers\ProblemController;
@@ -9,4 +8,7 @@ Route::get('/', function () {
 });
 
 Route::resource('problems', ProblemController::class)
-    ->only(['index', 'create', 'store']);
+    ->only(['index', 'create', 'store'])
+    ->middleware('auth');
+
+require __DIR__.'/auth.php';
