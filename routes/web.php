@@ -8,7 +8,7 @@ Route::get('/', function () {
 });
 
 Route::resource('problems', ProblemController::class)
-    ->only(['index', 'create', 'store'])
+    ->only(['index', 'create', 'store', 'edit', 'update', 'destroy'])
     ->middleware('auth');
 
 require __DIR__.'/auth.php';
