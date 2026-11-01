@@ -3,6 +3,7 @@
 
 use App\Http\Controllers\ProblemController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\SolutionController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -15,5 +16,7 @@ Route::resource('problems', ProblemController::class)
 
 Route::resource('products', ProductController::class)
     ->only(['index', 'create', 'store', 'show', 'edit', 'update', 'destroy']);
+
+Route::resource('solutions', SolutionController::class);
 
 require __DIR__.'/auth.php';
