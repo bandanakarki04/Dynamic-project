@@ -39,6 +39,39 @@
         </p>
 
         <p>
+    <label for="problems">Related Problems</label><br>
+
+    <select
+        id="problems"
+        name="problems[]"
+        multiple
+        size="6"
+    >
+        @foreach ($problems as $problem)
+            <option
+                value="{{ $problem->id }}"
+                @selected(
+                    in_array(
+                        $problem->id,
+                        old('problems', $solution->problems->pluck('id')->toArray())
+                    )
+                )
+            >
+                {{ $problem->name }}
+            </option>
+        @endforeach
+    </select>
+
+    @error('problems')
+        <br><span>{{ $message }}</span>
+    @enderror
+
+    @error('problems.*')
+        <br><span>{{ $message }}</span>
+    @enderror
+        </p>
+
+        <p>
             <label for="description">Description</label><br>
             <textarea
                 id="description"

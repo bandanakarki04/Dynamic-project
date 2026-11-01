@@ -2,58 +2,69 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Problem;
 use App\Models\Solution;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class SolutionController extends Controller
 {
-    // Display all solutions
     public function index()
     {
-        $solutions = Solution::orderBy('name')->paginate(10);
+        $solutions = Solution::with('problems')
+            ->orderBy('name')
+            ->paginate(10);
 
         return view('solutions.index', compact('solutions'));
     }
 
-    // Show the form for creating a solution
     public function create()
     {
-        return view('solutions.create');
+        $problems = Problem::orderBy('name')->get();
+
+        return view('solutions.create', compact('problems'));
     }
 
-    // Store a new solution
     public function store(Request $request)
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',
             'category' => 'nullable|string|max:255',
+            'problems' => 'nullable|array',
+            'problems.*' => 'integer|distinct|exists:problems,id',
         ]);
 
-        Solution::create($validated);
+        DB::transaction(function () use ($validated) {
+            $solution = Solution::create([
+                'name' => $validated['name'],
+                'description' => $validated['description'] ?? null,
+                'category' => $validated['category'] ?? null,
+            ]);
+
+            $solution->problems()->sync($validated['problems'] ?? []);
+        });
 
         return redirect()
             ->route('solutions.index')
             ->with('status', 'Solution created.');
     }
 
-    // Display one solution
     public function show(string $id)
     {
-        $solution = Solution::findOrFail($id);
+        $solution = Solution::with('problems')->findOrFail($id);
 
         return view('solutions.show', compact('solution'));
     }
 
-    // Show the form for editing a solution
     public function edit(string $id)
     {
-        $solution = Solution::findOrFail($id);
+        $solution = Solution::with('problems')->findOrFail($id);
+        $problems = Problem::orderBy('name')->get();
 
-        return view('solutions.edit', compact('solution'));
+        return view('solutions.edit', compact('solution', 'problems'));
     }
 
-    // Update a solution
     public function update(Request $request, string $id)
     {
         $solution = Solution::findOrFail($id);
@@ -62,16 +73,25 @@ class SolutionController extends Controller
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',
             'category' => 'nullable|string|max:255',
+            'problems' => 'nullable|array',
+            'problems.*' => 'integer|distinct|exists:problems,id',
         ]);
 
-        $solution->update($validated);
+        DB::transaction(function () use ($solution, $validated) {
+            $solution->update([
+                'name' => $validated['name'],
+                'description' => $validated['description'] ?? null,
+                'category' => $validated['category'] ?? null,
+            ]);
+
+            $solution->problems()->sync($validated['problems'] ?? []);
+        });
 
         return redirect()
             ->route('solutions.index')
             ->with('status', 'Solution updated.');
     }
 
-    // Delete a solution
     public function destroy(string $id)
     {
         $solution = Solution::findOrFail($id);

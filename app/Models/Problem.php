@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Problem extends Model
 {
-    protected $table = 'sf_problems';
+    protected $table = 'problems';
 
     protected $fillable = [
         'name',

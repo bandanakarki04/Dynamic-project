@@ -25,6 +25,19 @@
 
         <a href="{{ route('solutions.index') }}">Back to Solutions</a>
     </p>
+    <p>
+    <strong>Related Problems:</strong>
+</p>
+
+@if ($solution->problems->isNotEmpty())
+    <ul>
+        @foreach ($solution->problems as $problem)
+            <li>{{ $problem->name }}</li>
+        @endforeach
+    </ul>
+@else
+    <p>No related problems.</p>
+@endif
 
     <form
         method="POST"
