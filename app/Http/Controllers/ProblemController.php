@@ -6,15 +6,29 @@ use App\Http\Requests\StoreProblemRequest;
 use App\Http\Requests\UpdateProblemRequest;
 use App\Models\Problem;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class ProblemController extends Controller
 {
-    public function index(): View
+    public function index(Request $request): View
     {
-        $problems = Problem::orderBy('name')->paginate(10);
+        $search = trim((string) $request->query('search', ''));
 
-        return view('problems.index', compact('problems'));
+        $problems = Problem::query()
+            ->with('solutions')
+            ->when($search !== '', function ($query) use ($search) {
+                $query->where(function ($problemQuery) use ($search) {
+                    $problemQuery
+                        ->where('name', 'like', "%{$search}%")
+                        ->orWhere('description', 'like', "%{$search}%");
+                });
+            })
+            ->orderBy('name')
+            ->paginate(10)
+            ->withQueryString();
+
+        return view('problems.index', compact('problems', 'search'));
     }
 
     public function create(): View
