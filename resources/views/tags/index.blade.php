@@ -1,10 +1,12 @@
 @extends('layouts.app')
 
+@section('title', 'Tags')
+
 @section('content')
-    <h1>Tags</h1>
+    <h2>Tags</h2>
 
     @if (session('success'))
-        <p class="success">{{ session('success') }}</p>
+       <p role="status">{{ session('success') }}</p>
     @endif
 
     <p><a href="{{ route('tags.create') }}">Add tag</a></p>

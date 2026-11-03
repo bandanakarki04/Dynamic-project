@@ -1,13 +1,16 @@
 @extends('layouts.app')
 
+@section('title', 'KPIs')
+
 @section('content')
-    <h1>KPIs</h1>
+    <h2>KPIs</h2>
 
     @if (session('success'))
-        <p class="success">{{ session('success') }}</p>
+        <p role="status">{{ session('success') }}</p>
     @endif
+
     @if (session('error'))
-        <p class="error">{{ session('error') }}</p>
+        <p role="status">{{ session('error') }}</p>
     @endif
 
     <p><a href="{{ route('kpis.create') }}">Add KPI</a></p>

@@ -1,7 +1,10 @@
 @extends('layouts.app')
 
+@section('title', 'Edit KPI')
+
 @section('content')
-    <h1>Edit KPI</h1>
+    <h2>Edit KPI</h2>
+
     <form action="{{ route('kpis.update', $kpi) }}" method="POST">
         @csrf
         @method('PUT')
