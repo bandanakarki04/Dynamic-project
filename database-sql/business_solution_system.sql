@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 20, 2026 at 05:08 PM
+-- Generation Time: Nov 04, 2026 at 10:12 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -150,6 +150,10 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
+('53eUEbwaybs9OoNqybgWNVdFko2ditF6MMUc9MNM', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiZ1pEeURMT3V1MVZoeHEwQlM5bjVlWHlGazJmbHNOMmFtMjZETmx6dCI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6NTM6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9wcm9ibGVtcz91dG1fc291cmNlPWNoYXRncHQuY29tIjtzOjU6InJvdXRlIjtzOjE0OiJwcm9ibGVtcy5pbmRleCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1793015591),
+('IeYy5cmy5Nszx1M9z045m5Q2eBZC6GoS4wGmhp2z', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:158.0) Gecko/20100101 Firefox/158.0', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoibDAxQVFUbTJ6a3FDQ1NSSlExcndQQWFTc2Z2UW83dldLS0NyUTl6eiI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzA6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9wcm9ibGVtcyI7czo1OiJyb3V0ZSI7czoxNDoicHJvYmxlbXMuaW5kZXgiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX19', 1793025379),
+('K1cKDI2Hmkf5nAXTdkcZ0B0o55yq6n21dnUkd8Qm', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:158.0) Gecko/20100101 Firefox/158.0', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiVkRtSFV4QVVST3hsSVhDMXhHdmowRmg0NGpJWjhpbmRSYzZsN0RRZCI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzA6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9wcm9ibGVtcyI7czo1OiJyb3V0ZSI7czoxNDoicHJvYmxlbXMuaW5kZXgiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX19', 1793016115),
+('TVuyUJAmu9Zf1XFoFp3SxXOCpstl7vcxg7mYtFDg', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiMkNCN25xaFdWMkpxNXFrY01MVTN4WnZSQkdkRG5hVFB6OWRIN0xzdyI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6NTM6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9wcm9ibGVtcz91dG1fc291cmNlPWNoYXRncHQuY29tIjtzOjU6InJvdXRlIjtzOjE0OiJwcm9ibGVtcy5pbmRleCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1793024768),
 ('w5jjO399OLnC0syE1l9y1ZpZBmG7VEEUYE7tjjpL', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:158.0) Gecko/20100101 Firefox/158.0', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiUHdDcWlLUjJwV1lWOWtndXZ6RXMyYjRFVFZvN3ZtSXJDMGlOT25GRSI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzA6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9wcm9ibGVtcyI7czo1OiJyb3V0ZSI7czoxNDoicHJvYmxlbXMuaW5kZXgiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX19', 1792507150);
 
 -- --------------------------------------------------------
@@ -203,7 +207,10 @@ CREATE TABLE `sf_problems` (
 INSERT INTO `sf_problems` (`id`, `name`, `description`, `created_at`, `updated_at`) VALUES
 (1, 'Test3', 'checking the XAMPP', '2026-10-20 11:34:55', '2026-10-20 11:34:55'),
 (2, 'Test3', 'XAMPP Check', '2026-10-20 11:35:25', '2026-10-20 11:35:25'),
-(3, 'Test 4', 'Area deleted', '2026-10-20 11:39:09', '2026-10-20 11:39:09');
+(3, 'Test 4', 'Area deleted \r\ntest test......', '2026-10-20 11:39:09', '2026-11-02 11:59:05'),
+(4, 'Poor communication', 'Important project information is not shared clearly or on time.', '2026-11-02 11:35:52', '2026-11-02 11:35:52'),
+(5, 'Unclear responsibilities', 'Team members are unsure who owns specific tasks and decisions.', '2026-11-02 11:35:52', '2026-11-02 11:35:52'),
+(6, 'Mahsa', 'search solution', '2026-11-04 06:10:33', '2026-11-04 06:10:33');
 
 -- --------------------------------------------------------
 
@@ -215,6 +222,16 @@ CREATE TABLE `sf_problem_solution` (
   `problem_id` bigint(20) UNSIGNED NOT NULL,
   `solution_id` bigint(20) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `sf_problem_solution`
+--
+
+INSERT INTO `sf_problem_solution` (`problem_id`, `solution_id`) VALUES
+(1, 2),
+(4, 1),
+(5, 1),
+(6, 2);
 
 -- --------------------------------------------------------
 
@@ -263,9 +280,18 @@ CREATE TABLE `sf_solutions` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(255) NOT NULL,
   `description` text DEFAULT NULL,
+  `category` varchar(255) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `sf_solutions`
+--
+
+INSERT INTO `sf_solutions` (`id`, `name`, `description`, `category`, `created_at`, `updated_at`) VALUES
+(1, 'Weekly project coordination meeting', 'Share project updates, clarify task owners, and agree on action points.', 'Project management', '2026-11-02 11:35:52', '2026-11-02 11:35:52'),
+(2, 'Mahsa', 'TEST TEST', '14', '2026-11-04 06:22:18', '2026-11-04 06:22:18');
 
 -- --------------------------------------------------------
 
@@ -279,6 +305,30 @@ CREATE TABLE `sf_tags` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sf_users`
+--
+
+CREATE TABLE `sf_users` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `email_verified_at` timestamp NULL DEFAULT NULL,
+  `password` varchar(255) NOT NULL,
+  `remember_token` varchar(100) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `sf_users`
+--
+
+INSERT INTO `sf_users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'Test User', 'test@example.com', NULL, '$2y$12$jsQwzT79E5Ah7EtQIFG1peWjjXBmm65n8uIVyPGvS0xg4xW5bRSIS', NULL, '2026-11-02 11:35:52', '2026-11-02 11:46:17');
 
 -- --------------------------------------------------------
 
@@ -415,6 +465,13 @@ ALTER TABLE `sf_tags`
   ADD UNIQUE KEY `name` (`name`);
 
 --
+-- Indexes for table `sf_users`
+--
+ALTER TABLE `sf_users`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `users_email_unique` (`email`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -459,7 +516,7 @@ ALTER TABLE `sf_kpis`
 -- AUTO_INCREMENT for table `sf_problems`
 --
 ALTER TABLE `sf_problems`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `sf_products`
@@ -471,13 +528,19 @@ ALTER TABLE `sf_products`
 -- AUTO_INCREMENT for table `sf_solutions`
 --
 ALTER TABLE `sf_solutions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `sf_tags`
 --
 ALTER TABLE `sf_tags`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `sf_users`
+--
+ALTER TABLE `sf_users`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `users`
