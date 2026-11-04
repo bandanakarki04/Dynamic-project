@@ -14,7 +14,7 @@ return new class extends Migration
             $table->string('client_name');          // who the case is for
             $table->text('notes')->nullable();      // consultant's notes
 
-            // Needs the problems and solutions tables (made by B and C)
+            // Needs the problems and solutions tables 
             // to exist already, so this file must have a LATER timestamp.
             $table->foreignId('problem_id')->constrained('problems')->cascadeOnDelete();
             $table->foreignId('solution_id')->constrained('solutions')->cascadeOnDelete();

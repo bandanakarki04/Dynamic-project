@@ -9,25 +9,37 @@ class TagController extends Controller
 {
     public function index()
     {
-        $tags = Tag::orderBy('name')->paginate(15);
+        $tags = Tag::with('products')
+        ->orderBy('name')
+        ->paginate(15);
         return view('tags.index', compact('tags'));
+
     }
 
     public function create()
     {
-        return view('tags.create');
+        $products = \App\Models\Product::orderBy('name')->get();
+
+        return view('tags.create', compact('products'));
     }
 
-    public function store(TagRequest $request)
-    {
-        Tag::create($request->validated());
+   public function store(TagRequest $request)
+   {
+        $tag = Tag::create($request->validated());
+
+        if ($request->product_id) {
+            $tag->products()->attach($request->product_id);
+        }
+
         return redirect()->route('tags.index')->with('success', 'Tag created.');
-    }
+   }
 
     public function show(Tag $tag)
     {
         return view('tags.show', compact('tag'));
     }
+
+
 
     public function edit(Tag $tag)
     {

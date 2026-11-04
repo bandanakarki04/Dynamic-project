@@ -16,17 +16,26 @@
     @else
         <table>
             <thead>
-                <tr><th>Name</th><th>Actions</th></tr>
+              <tr>
+                <th>Name</th>
+                <th>Products</th>
+                <th>Actions</th>
+             </tr>
             </thead>
             <tbody>
                 @foreach ($tags as $tag)
                     <tr>
                         <td>{{ $tag->name }}</td>
+
+                        <td>
+                            {{ $tag->products->pluck('name')->join(', ') }}
+                        </td>
+
                         <td>
                             <a href="{{ route('tags.show', $tag) }}">View</a>
                             <a href="{{ route('tags.edit', $tag) }}">Edit</a>
                             <form action="{{ route('tags.destroy', $tag) }}" method="POST" style="display:inline"
-                                  onsubmit="return confirm('Delete this tag?')">
+                                onsubmit="return confirm('Delete this tag?')">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit">Delete</button>
