@@ -19,6 +19,7 @@
         <a href="/products">Products</a>
         <a href="/tags">Tags</a>
         <a href="/kpis">KPIs</a>
+        <a href="/cases/create">Cases</a>
     </nav>
 </header>
 

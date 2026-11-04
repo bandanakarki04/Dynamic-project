@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Http\Requests\CaseRecordRequest;
 use App\Models\CaseRecord;
 use App\Models\Problem;
 use App\Models\Solution;
@@ -27,5 +27,13 @@ class CaseRecordController extends Controller
             'solutions',
             'kpis'
         ));
+    }
+    public function store(CaseRecordRequest $request)
+    {
+        CaseRecord::create($request->validated());
+
+        return redirect()
+            ->back()
+            ->with('success', 'Case created.');
     }
 }

@@ -6,11 +6,18 @@ use Illuminate\Database\Eloquent\Model;
 
 class CaseRecord extends Model
 {
+    protected $fillable = [
+    'client_name',
+    'problem_id',
+    'solution_id',
+    'kpi_id',
+    'notes',];
     
-    public function kpis()
+    public function kpi()
     {
-        return $this->belongsToMany(Kpi::class);
+        return $this->belongsTo(Kpi::class);
     }
+
 
     public function problem()
     {

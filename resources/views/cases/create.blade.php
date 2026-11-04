@@ -5,7 +5,8 @@
 @section('content')
 <h2>Create Case</h2>
 
-<form>
+<form action="/cases" method="POST">
+    @csrf
 
     <p>
         <label>Client Name</label><br>

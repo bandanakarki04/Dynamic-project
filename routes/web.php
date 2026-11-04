@@ -24,5 +24,6 @@ Route::resource('products', ProductController::class)
 
 Route::resource('solutions', SolutionController::class);
 Route::get('/cases/create', [CaseRecordController::class, 'create']);
+Route::post('/cases', [CaseRecordController::class, 'store']);
 
 require __DIR__.'/auth.php';
