@@ -11,8 +11,7 @@ Route::get('/', function () {
 });
 
 Route::resource('problems', ProblemController::class)
-    ->only(['index', 'create', 'store', 'edit', 'update', 'destroy'])
-    ->middleware('auth');
+    ->only(['index', 'create', 'store', 'edit', 'update', 'destroy']);
 
 Route::resource('products', ProductController::class)
     ->only(['index', 'create', 'store', 'show', 'edit', 'update', 'destroy']);
