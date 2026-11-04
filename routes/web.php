@@ -15,8 +15,7 @@ Route::get('/', function () {
 Route::resource('tags', TagController::class);
 
 Route::resource('problems', ProblemController::class)
-    ->only(['index', 'create', 'store', 'edit', 'update', 'destroy'])
-    ->middleware('auth');
+    ->only(['index', 'create', 'store', 'edit', 'update', 'destroy']);
 
 Route::resource('kpis', KpiController::class);
 
