@@ -15,15 +15,35 @@ class ProductController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(\Illuminate\Http\Request $request)
 	{
-		$products = Product::with('tags')
-			->orderBy('name')
-			->paginate(10);
+		$tagId = $request->query('tag');
+		$solutionId = $request->query('solution');
+
+		$query = Product::with('tags');
+
+		if ($tagId !== null && $tagId !== '') {
+			$query->whereHas('tags', function ($q) use ($tagId) {
+				$q->where('tags.id', $tagId);
+			});
+		}
+
+		if ($solutionId !== null && $solutionId !== '') {
+			$query->whereHas('solutions', function ($q) use ($solutionId) {
+				$q->where('solutions.id', $solutionId);
+			});
+		}
+
+		$products = $query->orderBy('name')->paginate(10)->withQueryString();
+
+		if ($request->ajax()) {
+			return view('products._list', compact('products'));
+		}
 
 		$tags = Tag::orderBy('name')->get();
+		$solutions = Solution::orderBy('name')->get();
 
-		return view('products.index', compact('products', 'tags'));
+		return view('products.index', compact('products', 'tags', 'solutions'));
 	}
 
     /**
