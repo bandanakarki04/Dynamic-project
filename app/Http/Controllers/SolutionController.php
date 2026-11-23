@@ -10,13 +10,14 @@ use Illuminate\Support\Facades\DB;
 class SolutionController extends Controller
 {
     public function index()
-    {
-        $solutions = Solution::with('problems')
-            ->orderBy('name')
-            ->paginate(10);
+{
+    $solutions = Solution::with(['problems', 'products'])
+        ->orderBy('name')
+        ->paginate(10);
 
-        return view('solutions.index', compact('solutions'));
-    }
+    return view('solutions.index', compact('solutions'));
+}
+
 
     public function create()
     {

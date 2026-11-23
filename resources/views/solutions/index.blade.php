@@ -6,13 +6,13 @@
     <h2>Solutions</h2>
 
     @if (session('status'))
-        <p>{{ session('status') }}</p>
+        <p role="status">{{ session('status') }}</p>
     @endif
 
-    <a href="{{ route('solutions.create') }}">Add New Solution</a>
+    <p><a href="{{ route('solutions.create') }}">Add solution</a></p>
 
     @if ($solutions->isEmpty())
-        <p>No solutions found.</p>
+        <p>No solutions yet. Add the first one.</p>
     @else
         <table>
             <thead>
@@ -20,6 +20,7 @@
                     <th>Name</th>
                     <th>Category</th>
                     <th>Description</th>
+                    <th>Related Products</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -29,17 +30,23 @@
                     <tr>
                         <td>{{ $solution->name }}</td>
                         <td>{{ $solution->category ?? '-' }}</td>
-                        <td>{{ $solution->description ?? '-' }}</td>
+                        <td>{{ \Illuminate\Support\Str::limit($solution->description, 60) }}</td>
+                        <td>
+                            @forelse ($solution->products as $product)
+                                <div>{{ $product->name }}</div>
+                            @empty
+                                <span>No products linked yet.</span>
+                            @endforelse
+                        </td>
                         <td>
                             <a href="{{ route('solutions.show', $solution) }}">View</a>
-
                             <a href="{{ route('solutions.edit', $solution) }}">Edit</a>
 
                             <form
-                                method="POST"
                                 action="{{ route('solutions.destroy', $solution) }}"
+                                method="POST"
                                 style="display:inline"
-                                onsubmit="return confirm('Are you sure you want to delete this solution?')"
+                                onsubmit="return confirm('Delete this solution?')"
                             >
                                 @csrf
                                 @method('DELETE')
