@@ -1,87 +1,130 @@
 # Dynamic Project – Business Solution System
 
-A Laravel 12 application for managing problems, solutions, products, tags and KPIs.
+A Laravel 12 web application for managing business problems, solutions, products, tags, and KPIs.
 
 ## Requirements
 
 - PHP 8.2 or newer
 - Composer
 - Node.js and npm
-- MySQL/MariaDB or SQLite
+- MySQL or MariaDB
+- PHP MySQL extension (`pdo_mysql`)
 
-## Local setup
+## Local Setup
 
-1. Install PHP dependencies:
+### 1. Install PHP dependencies
 
-   ```bash
-   composer install
-   ```
+```bash
+composer install
+```
 
-2. Create your local environment file:
+### 2. Create your local environment file
 
-   ```cmd
-   copy .env.example .env
-   ```
+```cmd
+copy .env.example .env
+```
 
-3. Generate the application key:
+### 3. Generate the application key
 
-   ```bash
-   php artisan key:generate
-   ```
+```bash
+php artisan key:generate
+```
 
-4. For MySQL/MariaDB, create an **empty development database** first and set `DB_DATABASE`, `DB_USERNAME`, and `DB_PASSWORD` in `.env`. The MySQL connection intentionally uses the `sf_` table prefix. Laravel therefore creates framework tables such as `sf_users` and `sf_migrations`, as well as application tables such as `sf_problems` and `sf_solutions`.
+### 4. Configure the MySQL database
 
-   Do not import the previously supplied `database-sql/business_solution_system.sql` into a fresh or existing database as-is. That dump mixes prefixed application tables with unprefixed framework tables, its `sf_solutions` table is missing the `category` column required by the current model/migration, and its migration history does not describe all tables in the dump.
+Create an empty development database in MySQL/MariaDB.
 
-5. Run migrations and sample data against the empty development database:
+Configure the following settings in your `.env` file:
 
-   ```bash
-   php artisan migrate --seed
-   ```
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=business_solution_system
+DB_USERNAME=root
+DB_PASSWORD=
+```
 
-6. Install frontend dependencies and build assets:
+Update the database username and password according to your local MySQL configuration.
 
-   ```bash
-   npm install
-   npm run build
-   ```
+### 5. Run database migrations and seed sample data
 
-7. Start the Laravel development server:
+```bash
+php artisan migrate --seed
+```
 
-   ```bash
-   php artisan serve
-   ```
+### 6. Install frontend dependencies and build assets
 
-   Open `http://127.0.0.1:8000`.
+```bash
+npm install
+npm run build
+```
 
-## Problem search – User Story 1
+### 7. Start the Laravel development server
 
-The Problems page is available to authenticated users at `/problems`.
+```bash
+php artisan serve
+```
+
+Open the application at:
+
+http://127.0.0.1:8000
+
+## Problem Search – User Story 1
+
+The Problems page is publicly accessible at `/problems` without requiring users to log in.
+
+Features include:
 
 - Search problems by name or description.
 - View solutions connected to each problem through the `problem_solution` many-to-many pivot table.
-- Search terms remain in the URL when navigating pagination.
-- The database seeder creates two sample problems and one shared solution linked to both problems, demonstrating the multi-problem-to-one-solution relationship.
-- The seeder uses `firstOrCreate` and `syncWithoutDetaching`, so running it again does not create duplicate sample records or duplicate pivot links.
+- Preserve search terms when navigating through pagination.
+- Display related solutions using Laravel Eloquent relationships and eager loading.
 
-The demo account created by the seeder is `test@example.com` with password `password`. Change or remove this demo account before deploying the application.
+The database seeder creates two sample problems and one shared solution linked to both problems.
+
+The seeder uses `firstOrCreate` and `syncWithoutDetaching` to avoid duplicate sample records and pivot links when executed repeatedly.
 
 ## Tests
 
-Run the automated tests with:
+Run the automated test suite with:
 
 ```bash
 php artisan test
 ```
 
-The Problem feature tests cover login protection, searching by problem name and description, displaying related solutions, and seeding one solution linked to multiple problems.
+The current feature tests cover:
 
-## Database export
+- Public access to the Problems page without login.
+- Searching problems by name and description.
+- Displaying related solutions.
+- Linking one solution to multiple problems through the database seeder.
+- Filtering products by solution.
+- Filtering products by tag.
+- Filtering products by both solution and tag.
+- Returning only the product list for AJAX filtering requests.
 
-After running all migrations against the database you intend to submit, create the SQL export from that database. For MySQL/MariaDB:
+## Database Export
+
+Export the database only after confirming that its schema and data are consistent with the current migrations and application models.
+
+For MySQL/MariaDB:
 
 ```bash
 mysqldump -u YOUR_DB_USER -p YOUR_DATABASE_NAME > database-sql/business_solution_system.sql
 ```
 
-Do not commit `.env`, passwords, local session data, or other credentials to Git.
+Before committing the SQL export:
+
+- Verify that all required application tables and relationships are included.
+- Ensure that the `sf_` table prefix is consistent.
+- Check that the `sf_solutions` table includes the `category` column.
+- Do not include personal session data, credentials, or sensitive information.
+
+The previously supplied SQL dump should not be used for a fresh installation without correcting its schema and migration history.
+
+## Version Control and Security
+
+- Do not commit the `.env` file.
+- Do not commit passwords, application keys, session tokens, or other credentials.
+- Use Git and GitHub for collaborative development and version control.
