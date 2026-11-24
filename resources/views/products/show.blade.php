@@ -38,7 +38,7 @@
     </ul>
 
     <p>
-        <a href="{{ route('products.edit', $product->id) }}">Edit</a>
-        <a href="{{ route('products.index') }}">Back to products</a>
-    </p>
+		<a href="{{ route('products.edit', $product->id) }}">Edit</a>
+		<a href="{{ route('products.index', ['tag' => request()->query('tag'), 'solution' => request()->query('solution')]) }}">Back to products</a>
+	</p>
 @endsection
