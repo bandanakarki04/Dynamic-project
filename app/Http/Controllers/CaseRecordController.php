@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Http\JsonResponse;
 use App\Http\Requests\CaseRecordRequest;
 use App\Models\CaseRecord;
 use App\Models\Problem;
@@ -27,6 +28,14 @@ class CaseRecordController extends Controller
             'solutions',
             'kpis'
         ));
+    }
+    public function solutionsForProblem(Problem $problem): JsonResponse
+    {
+        return response()->json(
+            $problem->solutions()
+                ->orderBy('name')
+                ->get(['solutions.id', 'solutions.name'])
+        );
     }
     public function store(CaseRecordRequest $request)
     {

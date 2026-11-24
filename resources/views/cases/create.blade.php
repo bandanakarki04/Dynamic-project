@@ -4,6 +4,11 @@
 
 @section('content')
 <h2>Create Case</h2>
+@if ($errors->any())
+    <script>
+        alert(`{{ implode('\n', $errors->all()) }}`);
+    </script>
+@endif
 
 <form action="/cases" method="POST">
     @csrf
@@ -15,7 +20,7 @@
 
     <p>
         <label>Problem</label><br>
-        <select name="problem_id">
+        <select name="problem_id" id="problem_id">
             @foreach($problems as $problem)
                 <option value="{{ $problem->id }}">
                     {{ $problem->name }}
@@ -26,7 +31,7 @@
 
     <p>
         <label>Solution</label><br>
-        <select name="solution_id">
+        <select name="solution_id" id="solution_id">
             @foreach($solutions as $solution)
                 <option value="{{ $solution->id }}">
                     {{ $solution->name }}
@@ -54,4 +59,40 @@
 <button type="submit">Save Case</button>
 
 </form>
+<script>
+
+document.addEventListener('DOMContentLoaded', function () {
+
+    const problemSelect = document.getElementById('problem_id');
+    const solutionSelect = document.getElementById('solution_id');
+
+    problemSelect.addEventListener('change', function () {
+
+        const problemId = problemSelect.value;
+
+        fetch(`/problems/${problemId}/solutions`)
+            .then(response => response.json())
+            .then(data => {
+
+                solutionSelect.innerHTML = '';
+
+                data.forEach(solution => {
+
+                    const option = document.createElement('option');
+
+                    option.value = solution.id;
+                    option.textContent = solution.name;
+
+                    solutionSelect.appendChild(option);
+
+                });
+
+            });
+
+    });
+
+});
+
+</script>
 @endsection
+
