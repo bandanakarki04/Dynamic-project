@@ -29,3 +29,4 @@ AI was used as a supporting tool during the development process. The team used A
 All AI-generated suggestions were reviewed, modified where necessary, and tested by team members before being included in the project.
 
 ## Responsibility
+The development team takes full responsibility for all submitted code, testing, documentation, and project deliverables. AI was used only as a support tool during development.
